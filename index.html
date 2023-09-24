@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Calculator</title>
+        <style>
+        #resultdisp {
+            font-weight: bold;
+            font-size: xx-large;
+            background-color:cornsilk;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-stretch: wider;
+          }
+        </style>
+        <script>
+           function validation() {
+  // Retrieve all course tables
+  var tables = document.querySelectorAll("table[id^='t']");
+
+  var totalCredits = 0;
+  var totalGradePoints = 0;
+  var selectedCourseCount = 0;
+
+  // Loop through each course table
+  tables.forEach(function (table) {
+    // Retrieve grade and credit elements for the current table
+    var grade = table.querySelector("select[name='grade']").value;
+    var credit = parseInt(table.querySelector("select[name='credit']").value);
+
+    // Check if a grade and credit value are selected for the course
+    if (grade !== "select" && credit > 0) {
+      // Calculate grade points based on grade
+      var gradePoints;
+      switch (grade) {
+        case "S":
+          gradePoints = 10;
+          break;
+        case "A":
+          gradePoints = 9;
+          break;
+        case "B":
+          gradePoints = 8;
+          break;
+        case "C":
+          gradePoints = 7;
+          break;
+        case "D":
+          gradePoints = 6;
+          break;
+        case "E":
+          gradePoints = 5;
+          break;
+        case "F":
+          gradePoints = 0;
+          break;
+        default:
+          gradePoints = 0;
+      }
+
+      totalGradePoints += gradePoints * credit;
+      totalCredits += credit;
+      selectedCourseCount++;
+    }
+  });
+
+  // Calculate GPA only if at least one course is selected
+  if (selectedCourseCount > 0) {
+    // Calculate GPA
+    var gpa = totalGradePoints / totalCredits;
+
+    // Set the GPA value in the result input box
+    document.getElementById("resultdisp").value = gpa.toFixed(2);
+
+    // Show the result box
+    document.getElementById("resultBox").style.display = "block";
+  } else {
+    // Hide the result box if no course is selected
+    document.getElementById("resultBox").style.display = "none";
+  }
+}
+
+        </script>
+    </head>
+    <body style="background-color:wheat;text-align: center;background-image: url(Areal-View-Campus.jpeg);background-repeat: no-repeat; background-size: cover;opacity:1;">
+        <h3>SEMESTER WISE GPA CALCULATOR</h3>
+        <div id="data">
+         <div><img src="vitap.jpg" alt="VIT-AP UNIVERSITY" style="width:100px;height:100px;border-radius: 70px;"></div>   
+         <div>
+         <table border="1px" id="t1" class="center" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+            <tr bgcolor="lightblue">
+            <th style="padding:5px;padding-right:15px;padding-left: 15px;" >
+            <label for="course">COURSE 1</label>
+            </th>
+            <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+            <label for="subject1">Grade:-</label>
+            <select  name="grade">
+                <option value="select">select</option>
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+            </select>
+             </th>
+             <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+            <label for="Credits">Credits:-</label>
+            <select name="credit">
+                <option value="select">select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="10">10</option>
+            </select>
+            </th>
+            </tr>  
+         </table>
+         </div>   
+         <br>
+         <div>
+            <table border="1px" id="t2" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+               <tr bgcolor="lightblue">
+               <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+               <label for="course">COURSE 2</label>
+               </th>
+               <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+               <label for="subject2">Grade:-</label>
+               <select  name="grade">
+                   <option value="select">select</option>
+                   <option value="S">S</option>
+                   <option value="A">A</option>
+                   <option value="B">B</option>
+                   <option value="C">C</option>
+                   <option value="D">D</option>
+                   <option value="E">E</option>
+                   <option value="F">F</option>
+               </select>
+                </th>
+                <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+               <label for="Credits">Credits:-</label>
+               <select name="credit">
+                   <option value="select">select</option>
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+                   <option value="5">5</option>
+                   <option value="6">6</option>
+                   <option value="10">10</option>
+               </select>
+               </th>
+               </tr>  
+            </table>   
+       </div>
+       <br>
+       <div>
+        <table border="1px" id="t3" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+           <tr bgcolor="lightblue">
+           <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+           <label for="course">COURSE 3</label>
+           </th>
+           <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+           <label for="subject3">Grade:-</label>
+           <select  name="grade">
+               <option value="select">select</option>
+               <option value="S">S</option>
+               <option value="A">A</option>
+               <option value="B">B</option>
+               <option value="C">C</option>
+               <option value="D">D</option>
+               <option value="E">E</option>
+               <option value="F">F</option>
+           </select>
+            </th>
+            <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+           <label for="Credits">Credits:-</label>
+           <select  name="credit">
+               <option value="select">select</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="10">10</option>
+           </select>
+           </th>
+           </tr>  
+        </table> 
+        <br>
+        <div>
+            <table border="1px" id="t4" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+               <tr bgcolor="lightblue">
+               <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+               <label for="course">COURSE 4</label>
+               </th>
+               <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+               <label for="subject4">Grade:-</label>
+               <select name="grade">
+                   <option value="select">select</option>
+                   <option value="S">S</option>
+                   <option value="A">A</option>
+                   <option value="B">B</option>
+                   <option value="C">C</option>
+                   <option value="D">D</option>
+                   <option value="E">E</option>
+                   <option value="F">F</option>
+               </select>
+                </th>
+                <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+               <label for="Credits">Credits:-</label>
+               <select  name="credit">
+                   <option value="select">select</option>
+                   <option value="1">1</option>
+                   <option value="2">2</option>
+                   <option value="3">3</option>
+                   <option value="4">4</option>
+                   <option value="5">5</option>
+                   <option value="6">6</option>
+                   <option value="10">10</option>
+               </select>
+               </th>
+               </tr>  
+            </table>   
+            <br>
+            <div>
+                <table border="1px" id="t5" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+                   <tr bgcolor="lightblue">
+                   <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                   <label for="course">COURSE 5</label>
+                   </th>
+                   <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                   <label for="subject5">Grade:-</label>
+                   <select  name="grade">
+                       <option value="select">select</option>
+                       <option value="S">S</option>
+                       <option value="A">A</option>
+                       <option value="B">B</option>
+                       <option value="C">C</option>
+                       <option value="D">D</option>
+                       <option value="E">E</option>
+                       <option value="F">F</option>
+                   </select>
+                    </th>
+                    <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                   <label for="Credits">Credits:-</label>
+                   <select  name="credit">
+                       <option value="select">select</option>
+                       <option value="1">1</option>
+                       <option value="2">2</option>
+                       <option value="3">3</option>
+                       <option value="4">4</option>
+                       <option value="5">5</option>
+                       <option value="6">6</option>
+                       <option value="10">10</option>
+                   </select>
+                   </th>
+
+                   </tr>  
+                </table>   
+                <br>
+                <div>
+                    <table border="1px" id="t6" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+                       <tr bgcolor="lightblue">
+                       <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                       <label for="course">COURSE 6</label>
+                       </th>
+                       <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                       <label for="subject6">Grade:-</label>
+                       <select  name="grade">
+                           <option value="select">select</option>
+                           <option value="S">S</option>
+                           <option value="A">A</option>
+                           <option value="B">B</option>
+                           <option value="C">C</option>
+                           <option value="D">D</option>
+                           <option value="E">E</option>
+                           <option value="F">F</option>
+                       </select>
+                        </th>
+                        <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                       <label for="Credits">Credits:-</label>
+                       <select name="credit">
+                           <option value="select">select</option>
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                           <option value="6">6</option>
+                           <option value="10">10</option>
+                       </select>
+                       </th>
+                       </tr>  
+                    </table>   
+                    <br>
+                    <div>
+                        <table border="1px" id="t7" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+                           <tr bgcolor="lightblue">
+                           <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                           <label for="course">COURSE 7</label>
+                           </th>
+                           <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                           <label for="subject7">Grade:-</label>
+                           <select name="grade">
+                               <option value="select">select</option>
+                               <option value="S">S</option>
+                               <option value="A">A</option>
+                               <option value="B">B</option>
+                               <option value="C">C</option>
+                               <option value="D">D</option>
+                               <option value="E">E</option>
+                               <option value="F">F</option>
+                           </select>
+                            </th>
+                            <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                           <label for="Credits">Credits:-</label>
+                           <select name="credit">
+                               <option value="select">select</option>
+                               <option value="1">1</option>
+                               <option value="2">2</option>
+                               <option value="3">3</option>
+                               <option value="4">4</option>
+                               <option value="5">5</option>
+                               <option value="6">6</option>
+                               <option value="10">10</option>
+                           </select>
+                           </th>
+                           </tr>  
+                        </table>  
+                        </div>  
+                        <br> 
+                        <div>
+                            <table border="1px" id="t8" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+                               <tr bgcolor="lightblue">
+                               <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                               <label for="course">COURSE 8</label>
+                               </th>
+                               <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                               <label for="subject8">Grade:-</label>
+                               <select name="grade">
+                                   <option value="select">select</option>
+                                   <option value="S">S</option>
+                                   <option value="A">A</option>
+                                   <option value="B">B</option>
+                                   <option value="C">C</option>
+                                   <option value="D">D</option>
+                                   <option value="E">E</option>
+                                   <option value="F">F</option>
+                               </select>
+                                </th>
+                                <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                               <label for="Credits">Credits:-</label>
+                               <select name="credit">
+                                   <option value="select">select</option>
+                                   <option value="1">1</option>
+                                   <option value="2">2</option>
+                                   <option value="3">3</option>
+                                   <option value="4">4</option>
+                                   <option value="5">5</option>
+                                   <option value="6">6</option>
+                                   <option value="10">10</option>
+                               </select>
+                               </th>
+                               </tr>  
+                            </table>  
+                            </div> 
+                            <br>
+                            <div>
+                                <table border="1px" id="t9" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+                                   <tr bgcolor="lightblue">
+                                   <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                                   <label for="course">COURSE 9</label>
+                                   </th>
+                                   <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                                   <label for="subject9">Grade:-</label>
+                                   <select  name="grade">
+                                       <option value="select">select</option>
+                                       <option value="S">S</option>
+                                       <option value="A">A</option>
+                                       <option value="B">B</option>
+                                       <option value="C">C</option>
+                                       <option value="D">D</option>
+                                       <option value="E">E</option>
+                                       <option value="F">F</option>
+                                   </select>
+                                    </th>
+                                    <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                                   <label for="Credits">Credits:-</label>
+                                   <select  name="credit">
+                                       <option value="select">select</option>
+                                       <option value="1">1</option>
+                                       <option value="2">2</option>
+                                       <option value="3">3</option>
+                                       <option value="4">4</option>
+                                       <option value="5">5</option>
+                                       <option value="6">6</option>
+                                       <option value="10">10</option>
+                                   </select>
+                                   </th>
+                                   </tr>  
+                                </table>  
+                                </div> 
+                                <br>
+                                <div>
+                                    <table border="1px" id="t10" style="margin-left: auto;margin-right: auto;border: 2px solid black;">
+                                       <tr bgcolor="lightblue">
+                                       <th style="padding:5px;padding: right 10px;padding-left: 15px;">
+                                       <label for="course">COURSE 10</label>
+                                       </th>
+                                       <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                                       <label for="subject10">Grade:-</label>
+                                       <select  name="grade">
+                                           <option value="select">select</option>
+                                           <option value="S">S</option>
+                                           <option value="A">A</option>
+                                           <option value="B">B</option>
+                                           <option value="C">C</option>
+                                           <option value="D">D</option>
+                                           <option value="E">E</option>
+                                           <option value="F">F</option>
+                                       </select>
+                                        </th>
+                                        <th style="padding:5px;padding-right:15px;padding-left: 15px;">
+                                       <label for="Credits">Credits:-</label>
+                                       <select name="credit">
+                                           <option value="select">select</option>
+                                           <option value="1">1</option>
+                                           <option value="2">2</option>
+                                           <option value="3">3</option>
+                                           <option value="4">4</option>
+                                           <option value="5">5</option>
+                                           <option value="6">6</option>
+                                           <option value="10">10</option>
+                                       </select>
+                                       </th>
+                                       </tr>  
+                                    </table>  
+                                    </div> 
+                                </div>
+                                <br>
+                                <div id="resultBox" style="display: none;">
+                                    <input type="text" id="resultdisp" name="resultdisp"style="width: 150px; height: 150px; border: 2px solid black; font-size: large; text-align: center;">
+                                  </div>
+                                <br>
+                                <button  type="submit" onclick="validation()" style="width: 250px;height:50px;font-size: large;background-color:lightblue">
+                                    <b>Calcuate</b></button>
+             
+        </div>                    
+    </body>
+</html>
